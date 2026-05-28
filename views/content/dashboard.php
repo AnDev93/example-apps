@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <?php include_once 'views/inc/head.php'; ?>
+  <?php include_once '../inc/head.php'; ?>
 </head>
 
 <body>
   <div class="admin-shell">
     <div class="sidebar-backdrop" data-sidebar-close></div>
 
-    <?php include_once 'views/inc/sidebar.php'; ?>
+    <?php include_once '../inc/sidebar.php'; ?>
 
     <div class="admin-main">
-      <?php include_once 'views/inc/navbar.php'; ?>
+      <?php include_once '../inc/navbar.php'; ?>
 
       <main class="dashboard-content">
         <div class="container-fluid px-3 px-lg-4 py-4">
@@ -224,10 +224,10 @@
         </div>
       </main>
 
-      <?php include_once 'views/inc/footer.php'; ?>
+      <?php include_once '../inc/footer.php'; ?>
     </div>
   </div>
 
-    <?php include_once 'views/inc/script.php'; ?>
+    <?php include_once '../inc/script.php'; ?>
 </body>
 </html>
