@@ -24,7 +24,7 @@
                 <p class="text-muted mb-0">Monitor performance, sales, users, and support from one clean workspace.</p>
               </div>
             </div>
-            <div class="heading-actions"><button class="btn btn-outline-secondary btn-sm" type="button"><i class="bi bi-download" aria-hidden="true"></i> Export</button><button class="btn btn-primary btn-sm" type="button"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i> Create Report</button></div>
+            
           </div>
 
           <section class="row g-3 mt-1" aria-label="Dashboard metrics">

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <?php include_once 'views/inc/head.php'; ?>
+  <?php include_once '../inc/head.php'; ?>
 </head>
 
 <body>
   <div class="admin-shell">
     <div class="sidebar-backdrop" data-sidebar-close></div>
 
-    <?php include_once 'views/inc/sidebar.php'; ?>
+    <?php include_once '../inc/sidebar.php'; ?>
 
     <div class="admin-main">
-      <?php include_once 'views/inc/navbar.php'; ?>
+      <?php include_once '../inc/navbar.php'; ?>
 
       <main class="dashboard-content">
         <div class="container-fluid px-3 px-lg-4 py-4">
@@ -24,7 +24,6 @@
                 <p class="text-muted mb-0">Review accounts, roles, account status, and team ownership.</p>
               </div>
             </div>
-            <div class="heading-actions"><a class="btn btn-outline-secondary btn-sm" href="tables.html"><i class="bi bi-download" aria-hidden="true"></i> Export</a><a class="btn btn-primary btn-sm" href="add-user.html"><i class="bi bi-person-plus" aria-hidden="true"></i> Add User</a></div>
           </div>
 
           <section class="row g-3 mt-1" aria-label="User summary">
@@ -191,10 +190,10 @@
         </div>
       </main>
 
-      <?php include_once 'views/inc/footer.php'; ?>
+      <?php include_once '../inc/footer.php'; ?>
     </div>
   </div>
 
-    <?php include_once 'views/inc/script.php'; ?>
+    <?php include_once '../inc/script.php'; ?>
 </body>
 </html>
