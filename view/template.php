@@ -14,7 +14,7 @@
       <?php include_once 'views/inc/navbar.php'; ?>
 
       <main class="dashboard-content">
-       
+      <!-- !-->
       </main>
 
       <?php include_once 'views/inc/footer.php'; ?>
