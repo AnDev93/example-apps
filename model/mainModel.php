@@ -41,7 +41,6 @@
 			return $output;
 		}
 
-
 		/*--------- Funcion generar codigos aleatorios ---------*/
 		protected static function generar_codigo_aleatorio($letra,$longitud,$numero){
 			for($i=1; $i<=$longitud; $i++){
