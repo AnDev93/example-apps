@@ -10,15 +10,15 @@
     </div>
 
     <nav class="sidebar-nav">
-        <a class="nav-link" href="../content/dashboard.php">
+        <a class="nav-link" href="<?php echo APP_URL;?>dashboard/">
             <span class="nav-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
             <span class="nav-text">Dashboard</span>
         </a>
-        <a class="nav-link" href="../content/users.php">
+        <a class="nav-link" href="<?php echo APP_URL;?>user-list">
             <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
             <span class="nav-text">Users</span>
         </a>
-        <a class="nav-link active" href="../content/add-user.php" aria-current="page">
+        <a class="nav-link active" href="<?php echo APP_URL;?>user-add" aria-current="page">
             <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
             <span class="nav-text">Add User</span>
         </a>
@@ -31,7 +31,7 @@
     </nav>
 
     <div class="sidebar-user">
-        <img class="avatar-img avatar-md sidebar-user-avatar" src="../assets/images/avatar/avatar.jpg" alt="Admin Hasan">
+        <img class="avatar-img avatar-md sidebar-user-avatar" src="<?php echo APP_URL;?>view/assets/images/avatar/avatar.jpg" alt="Admin Hasan">
         <strong>Admin Hasan</strong>
         <small>Active Workspace</small>
     </div>
