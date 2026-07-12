@@ -9,7 +9,6 @@
       </div>
     </div>
   </div>
-
   <section class="row g-3">
     <div class="col-12 col-xl-8">
       <form class="panel needs-validation" novalidate>
@@ -18,12 +17,16 @@
           <div class="col-md-6">
             <label class="form-label" for="Nombres">Nombres</label>
             <input class="form-control" id="Nombres" name="Nombres_reg" type="text" required>
-            <div class="invalid-feedback">El campo nombres Es requerido.</div>
+            <div class="invalid-feedback">
+              El campo nombres Es requerido.
+            </div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="Apellidos">Apellidos</label>
             <input class="form-control" id="Apellidos" name="Apellidos_reg" type="text" required>
-            <div class="invalid-feedback">El campo apellidos Es requerido.</div>
+            <div class="invalid-feedback">
+              El campo apellidos Es requerido.
+            </div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="Email">Email</label>
