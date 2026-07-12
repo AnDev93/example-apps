@@ -62,17 +62,17 @@
           </div>
           <div class="col-md-12">
             <label class="form-label" for="username">usuario</label>
-            <input class="form-control" id="username" name="username" type="text" required>
+            <input class="form-control" id="username" name="Username_reg" type="text" required>
             <div class="invalid-feedback">El campo usuario es requerido.</div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="password">Contraseña</label>
-            <input class="form-control" id="password" name="password_reg" type="password" required>
+            <input class="form-control" id="password" name="Password_reg" type="password" required>
             <div class="invalid-feedback">El campo contraseña es requerido.</div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="password">Confirmar Contraseña</label>
-            <input class="form-control" id="password_confirm" name="password_confirm_reg" type="password" required>
+            <input class="form-control" id="password_confirm" name="Password_confirm_reg" type="password" required>
             <div class="invalid-feedback">El campo confirmar contraseña es requerido.</div>
           </div>
         </div>

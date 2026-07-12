@@ -6,6 +6,7 @@
 
 <body>
   <?php
+    $peticionAjax=false;
     require_once "./controller/viewController.php";
     // instancia al controlador vista
     $ins_view = new viewController();
