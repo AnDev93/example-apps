@@ -3,9 +3,9 @@
     <div class="page-heading-copy">
       <span class="page-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
       <div>
-        <p class="eyebrow mb-1">Management</p>
-        <h1 class="h3 mb-1">Add User</h1>
-        <p class="text-muted mb-0">Create a new user account with role and team assignments.</p>
+        <p class="eyebrow mb-1">Gestión</p>
+        <h1 class="h3 mb-1">Agregar usuario</h1>
+        <p class="text-muted mb-0">Crea una nueva cuenta de usuario con roles y asignaciones de equipo.</p>
       </div>
     </div>
   </div>
@@ -13,15 +13,65 @@
   <section class="row g-3">
     <div class="col-12 col-xl-8">
       <form class="panel needs-validation" novalidate>
-        <div class="panel-header"><div><h2 class="h5 mb-1 section-title"><i class="bi bi-person-plus" aria-hidden="true"></i><span>User Information</span></h2><p class="text-muted mb-0">Create a user account with validated fields.</p></div></div>
+        <div class="panel-header"><div><h2 class="h5 mb-1 section-title"><i class="bi bi-person-plus" aria-hidden="true"></i><span>User Information</span></h2><p class="text-muted mb-0">Crea una cuenta de usuario con campos validados.</p></div></div>
         <div class="row g-3">
-          <div class="col-md-6"><label class="form-label" for="firstName">First name</label><input class="form-control" id="firstName" type="text" required><div class="invalid-feedback">First name is required.</div></div>
-          <div class="col-md-6"><label class="form-label" for="lastName">Last name</label><input class="form-control" id="lastName" type="text" required><div class="invalid-feedback">Last name is required.</div></div>
-          <div class="col-md-6"><label class="form-label" for="email">Email</label><input class="form-control" id="email" type="email" required><div class="invalid-feedback">Enter a valid email.</div></div>
-          <div class="col-md-6"><label class="form-label" for="phone">Phone</label><input class="form-control" id="phone" type="tel" required><div class="invalid-feedback">Phone number is required.</div></div>
-          <div class="col-md-6"><label class="form-label" for="role">Role</label><select class="form-select" id="role" required><option value="">Choose role</option><option>Admin</option><option>Manager</option><option>Editor</option><option>Viewer</option></select><div class="invalid-feedback">Choose a role.</div></div>
-          <div class="col-md-6"><label class="form-label" for="team">Team</label><select class="form-select" id="team" required><option value="">Choose team</option><option>Operations</option><option>Sales</option><option>Content</option><option>Finance</option></select><div class="invalid-feedback">Choose a team.</div></div>
-          <div class="col-12"><label class="form-label" for="notes">Notes</label><textarea class="form-control" id="notes" rows="4" placeholder="Optional onboarding notes"></textarea></div>
+          <div class="col-md-6">
+            <label class="form-label" for="Nombres">Nombres</label>
+            <input class="form-control" id="Nombres" name="Nombres_reg" type="text" required>
+            <div class="invalid-feedback">El campo nombres Es requerido.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="Apellidos">Apellidos</label>
+            <input class="form-control" id="Apellidos" name="Apellidos_reg" type="text" required>
+            <div class="invalid-feedback">El campo apellidos Es requerido.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="Email">Email</label>
+            <input class="form-control" id="Email" name="Email_reg" type="email" required>
+            <div class="invalid-feedback">Ingrese un correo valido</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="Telefono">Telefono</label>
+            <input class="form-control" id="Telefono" name="Telefono_reg" type="tel" required>
+            <div class="invalid-feedback">El campo telefono Es requerido.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="Rol">Rol</label>
+            <select class="form-select" id="Rol" name="Rol_reg" required>
+              <option value="">Choose role</option>
+              <option>Admin</option>
+              <option>Manager</option>
+              <option>Editor</option>
+              <option>Viewer</option>
+            </select>
+            <div class="invalid-feedback">Elige un rol.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="Equipo">Equipo</label>
+            <select class="form-select" id="Equipo" name="Equipo_reg" required>
+              <option value="">Choose team</option>
+              <option>Operations</option>
+              <option>Sales</option>
+              <option>Content</option>
+              <option>Finance</option>
+            </select>
+            <div class="invalid-feedback">Choose a team.</div>
+          </div>
+          <div class="col-md-12">
+            <label class="form-label" for="username">usuario</label>
+            <input class="form-control" id="username" name="username" type="text" required>
+            <div class="invalid-feedback">El campo usuario es requerido.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="password">Contraseña</label>
+            <input class="form-control" id="password" name="password_reg" type="password" required>
+            <div class="invalid-feedback">El campo contraseña es requerido.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="password">Confirmar Contraseña</label>
+            <input class="form-control" id="password_confirm" name="password_confirm_reg" type="password" required>
+            <div class="invalid-feedback">El campo confirmar contraseña es requerido.</div>
+          </div>
         </div>
         <div class="d-flex flex-wrap justify-content-end gap-2 mt-4"><a class="btn btn-outline-secondary" href="users.html">Cancel</a><button class="btn btn-primary" type="submit"><i class="bi bi-person-check" aria-hidden="true"></i> Create User</button></div>
       </form>
