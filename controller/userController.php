@@ -183,5 +183,21 @@
                 echo json_encode($alert);
                 exit();
             }/*-- Fin controlador --*/
+        } // fin Controlador add_user_controller
+
+        public function list_users_controller(){
+            
         }
+
+        public function update_user_controller(){
+            // Implement the logic for updating a user
+        }
+
+        public function delete_user_controller(){
+            // Implement the logic for deleting a user
+        }
+
+        
+
+
     }

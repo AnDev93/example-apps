@@ -1,0 +1,125 @@
+<?php
+    if($peticionAjax){
+        require_once "../model/loginModel.php";
+    }else{
+        require_once "./model/loginModel.php";
+    }
+
+    class loginController extends loginModel{
+        public function log_in_controller(){
+            /*== Limpiando los campos ==*/
+            $username=mainModel::clean_string($_POST['Username_log']);
+            $password=mainModel::clean_string($_POST['Password_log']);
+
+            /*== Verificando campos vacios ==*/
+            if($username=="" || $password==""){
+                echo '
+				<script>
+					Swal.fire({
+						title: "Ocurrio un error inesperado",
+						text: "No has llenado todos los campos que son requeridos",
+						icon: "error",
+						confirmButtonText: "Aceptar"
+					});
+				</script>
+				';
+				exit();
+            }
+            /*== Verificando integridad de los datos ==*/
+            if(mainModel::verificar_datos("[a-zA-Z0-9]{5,35}",$username)){
+                echo '
+				<script>
+					Swal.fire({
+						title: "Ocurrio un error inesperado",
+						text: "El NOMBRE DE USUARIO no coincide con el formato solicitado",
+						icon: "error",
+						confirmButtonText: "Aceptar"
+					});
+				</script>
+				';
+				exit();
+            }elseif(mainModel::verificar_datos("[a-zA-Z0-9$@.-]{7,30}",$password)){
+                echo '
+				<script>
+					Swal.fire({
+						title: "Ocurrio un error inesperado",
+						text: "La CLAVE no coincide con el formato solicitado",
+						icon: "error",
+						confirmButtonText: "Aceptar"
+					});
+				</script>
+				';
+				exit();
+            }
+
+            /*== Comprobando si el usuario existe ==*/
+            $datosLogin=[
+                "username"=>$username,
+                "password"=>mainModel::encryption($password)
+            ];
+
+            $checkLogin=loginModel::log_in_model($datosLogin);
+
+            if($checkLogin->rowCount()==1){
+                $row=$checkLogin->fetch(PDO::FETCH_ASSOC);
+                
+                /*== Generando una nueva session ==*/
+                session_start(['name'=>'EA']);
+                $_SESSION['id_ea']=$row['usuario_id'];
+                $_SESSION['nombre_ea']=$row['usuario_nombre']." ".$row['usuario_apellido'];
+                $_SESSION['usuario_ea']=$row['usuario_username'];
+                $_SESSION['rol_ea']=$row['usuario_rol'];
+                $_SESSION['token_ea']=md5(uniqid(mt_rand(),true));
+
+                return header('Location: '.APP_URL.'dashboard/');
+            }else{
+                echo '
+                <script>
+                    Swal.fire({
+                        title: "Ocurrio un error inesperado",
+                        text: "El NOMBRE DE USUARIO o la CLAVE son incorrectos",
+                        icon: "error",
+                        confirmButtonText: "Aceptar"
+                    });
+                </script>
+                ';
+                exit();
+            }
+
+        } //Fin del controlador log_in_controller
+
+        /*== Forzar cierre de sesion ==*/
+        public function force_log_out_controller(){
+            session_unset();
+            session_destroy();
+            if(headers_sent()){
+                return header('Location: '.APP_URL.'login/');
+            }else{
+                return header('Location: '.APP_URL.'login/');
+            }
+        } //Fin del controlador force_log_out_controller
+
+        /*== cierre de sesion ==*/
+        public function log_out_controller(){
+            session_start(['name'=>'EA']);
+            $token=mainModel::decryption($_POST['token']);
+            $usuario=mainModel::decryption($_POST['usuario']);
+
+            if($token==$_SESSION['token_ea'] && $usuario==$_SESSION['usuario_ea']){
+                session_unset();
+                session_destroy();
+                $alert=[
+					"Alerta"=>"redireccionar",
+					"URL"=>APP_URL."login/"
+				];
+            }else{
+                $alert=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"No se pudo cerrar la sesion en el sistema",
+					"Tipo"=>"error"
+				];
+            }
+            echo json_encode($alert);
+        }/*-- Fin controlador --*/
+    }/*-- Fin de la clase --*/
