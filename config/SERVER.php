@@ -2,7 +2,7 @@
 	
 	/*----------  Datos del servidor  ----------*/
 	const SERVER="localhost";
-	const DB=""; // nombre de base datos
+	const DB="crud_app"; // nombre de base datos
 	const USER="root"; // nombre del usuario mysql
 	const PASS=""; //contrase#a del usuario mysql
 

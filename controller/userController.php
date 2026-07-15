@@ -5,8 +5,19 @@
         require_once "./model/userModel.php";
     }
     class userController extends userModel {
+        
         /*== Controlador para agregar un usuario ==*/
         public function  add_user_controller(){
+            
+            $alert = [
+                "Alerta" => "simple",
+                "Titulo" => "todo bien",
+                "Texto" => "",
+                "Tipo" => "success"
+            ];
+            echo json_encode($alert);
+            exit();
+
             /*== recibir campos via post ==*/
             $nombre = mainModel::clean_string($_POST['Nombre_reg']);
             $apellido = mainModel::clean_string($_POST['Apellido_reg']);
@@ -17,6 +28,7 @@
             $username = mainModel::clean_string($_POST['Username_reg']);
             $password = mainModel::clean_string($_POST['Password_reg']);
             $password2 = mainModel::clean_string($_POST['Password_confirm_reg']);
+            
             
             /*== comprobar campos vacios ==*/
             if($nombre=="" ||$apellido=="" || $telefono=="" || $password=="" || $password2=="" || $username==""){

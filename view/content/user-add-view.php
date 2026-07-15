@@ -11,8 +11,9 @@
   </div>
   <section class="row g-3">
     <div class="col-12 col-xl-8">
-      <form class="panel needs-validation" novalidate>
+      <form class="panel FormularioAjax" action="<?php echo APP_URL; ?>router/requestUser.php" method="POST" data-form="save" autocomplete="off" >
         <div class="panel-header"><div><h2 class="h5 mb-1 section-title"><i class="bi bi-person-plus" aria-hidden="true"></i><span>User Information</span></h2><p class="text-muted mb-0">Crea una cuenta de usuario con campos validados.</p></div></div>
+        <input type="hidden" name="guardarUsuario" value="1">
         <div class="row g-3">
           <div class="col-md-6">
             <label class="form-label" for="Nombres">Nombres</label>
@@ -76,7 +77,15 @@
             <div class="invalid-feedback">El campo confirmar contraseña es requerido.</div>
           </div>
         </div>
-        <div class="d-flex flex-wrap justify-content-end gap-2 mt-4"><a class="btn btn-outline-secondary" href="users.html">Cancel</a><button class="btn btn-primary" type="submit"><i class="bi bi-person-check" aria-hidden="true"></i> Create User</button></div>
+        <div class="d-flex flex-wrap justify-content-end gap-2 mt-4">
+          
+          <button class="btn btn-outline-secondary" type="reset">
+            Cancel
+          </button>
+          <button class="btn btn-primary" type="submit">
+            <i class="bi bi-person-check" aria-hidden="true"></i> Create User
+          </button>
+        </div>
       </form>
     </div>
     <div class="col-12 col-xl-4">
