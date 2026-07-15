@@ -9,18 +9,10 @@
         /*== Controlador para agregar un usuario ==*/
         public function  add_user_controller(){
             
-            $alert = [
-                "Alerta" => "simple",
-                "Titulo" => "todo bien",
-                "Texto" => "",
-                "Tipo" => "success"
-            ];
-            echo json_encode($alert);
-            exit();
-
+            
             /*== recibir campos via post ==*/
-            $nombre = mainModel::clean_string($_POST['Nombre_reg']);
-            $apellido = mainModel::clean_string($_POST['Apellido_reg']);
+            $nombre = mainModel::clean_string($_POST['Nombres_reg']);
+            $apellido = mainModel::clean_string($_POST['Apellidos_reg']);
             $email = mainModel::clean_string($_POST['Email_reg']);
             $telefono = mainModel::clean_string($_POST['Telefono_reg']);
             $rol = mainModel::clean_string($_POST['Rol_reg']);
@@ -30,6 +22,7 @@
             $password2 = mainModel::clean_string($_POST['Password_confirm_reg']);
             
             
+
             /*== comprobar campos vacios ==*/
             if($nombre=="" ||$apellido=="" || $telefono=="" || $password=="" || $password2=="" || $username==""){
                 $alert = [
@@ -41,7 +34,7 @@
                 echo json_encode($alert);
                 exit();
             }
-
+            
             /*== Verificando integridad de los datos ==*/
             if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,30}", $nombre)){
                 $alert = [
@@ -53,7 +46,7 @@
                 echo json_encode($alert);
                 exit();
             }
-
+            
             if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,30}", $apellido)){
                 $alert = [
                     "Alerta" => "simple",
@@ -64,6 +57,7 @@
                 echo json_encode($alert);
                 exit();
             }
+            
             /*== Comprobando email ==*/
             if($email!=""){
                 if(filter_var($email,FILTER_VALIDATE_EMAIL)){
@@ -88,7 +82,7 @@
                     echo json_encode($alert);
                     exit();
                 }
-
+                
                 if(mainModel::verificar_datos("[0-9+]{11,15}",$telefono)){
                     $alert=[
                         "Alerta"=>"simple",
@@ -156,7 +150,7 @@
                 }
 
                 $password = mainModel::encryption($password);
-                
+                $estatus=true;
                 $data = [
                     "Nombre" => $nombre,
                     "Apellido" => $apellido,
@@ -166,9 +160,9 @@
                     "Equipo" => $equipo,
                     "Username" => $username,
                     "Password" => $password,
-                    "Estatus" => 1
+                    "Estatus" => $estatus
                 ];
-
+                
                 $add_user = userModel::add_user_model($data);
 
                 if($add_user->rowCount() == 1){

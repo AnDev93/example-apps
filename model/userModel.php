@@ -5,7 +5,7 @@
     class userModel extends mainModel{
         // INSERT INTO Tabla(campo1,campo2,campo3) VALUES(:marcador1,:marcador2,:marcador3)
         protected function add_user_model($data){
-            $sql = mainModel::conectar()->prepare("INSERT INTO usuario(usuario_nombre,usuario_apellido,usuario_email,usuario_telefono,usuario_rol,usuario_equipo,usuario_username,usuario_password,usuario_estatus ) VALUES(:Nombre,:Apellido,:Email,:Telefono,:Rol,:Equipo,:Username,:Password,:Estatus)");
+            $sql = mainModel::conectar()->prepare("INSERT INTO usuario(usuario_nombre,usuario_apellido,usuario_email,usuario_telefono,usuario_rol,usuario_equipo,usuario_username,usuario_password,usuario_estatus) VALUES(:Nombre,:Apellido,:Email,:Telefono,:Rol,:Equipo,:Username,:Password,:Estatus)");
             $sql->bindParam(":Nombre",$data['Nombre']);
             $sql->bindParam(":Apellido",$data['Apellido']);
             $sql->bindParam(":Email",$data['Email']);

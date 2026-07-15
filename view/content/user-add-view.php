@@ -43,10 +43,10 @@
             <label class="form-label" for="Rol">Rol</label>
             <select class="form-select" id="Rol" name="Rol_reg" required>
               <option value="">Choose role</option>
-              <option>Admin</option>
-              <option>Manager</option>
-              <option>Editor</option>
-              <option>Viewer</option>
+              <option value="1">Admin</option>
+              <option value="2">Manager</option>
+              <option value="3">Editor</option>
+              <option value="4">Viewer</option>
             </select>
             <div class="invalid-feedback">Elige un rol.</div>
           </div>
@@ -54,10 +54,10 @@
             <label class="form-label" for="Equipo">Equipo</label>
             <select class="form-select" id="Equipo" name="Equipo_reg" required>
               <option value="">Choose team</option>
-              <option>Operations</option>
-              <option>Sales</option>
-              <option>Content</option>
-              <option>Finance</option>
+              <option value="1">Operations</option>
+              <option value="2">Sales</option>
+              <option value="3">Content</option>
+              <option value="4">Finance</option>
             </select>
             <div class="invalid-feedback">Choose a team.</div>
           </div>
