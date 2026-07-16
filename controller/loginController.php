@@ -8,8 +8,8 @@
     class loginController extends loginModel{
         public function log_in_controller(){
             /*== Limpiando los campos ==*/
-            $username=mainModel::clean_string($_POST['Username_log']);
-            $password=mainModel::clean_string($_POST['Password_log']);
+            $username=mainModel::clean_string($_POST['username_login']);
+            $password=mainModel::clean_string($_POST['password_login']);
 
             /*== Verificando campos vacios ==*/
             if($username=="" || $password==""){
