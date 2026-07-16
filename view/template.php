@@ -15,7 +15,17 @@
     if ($view == "login" || $view == "recovery" || $view == "404") :
       require_once "./view/content/" . $view . "-view.php";
     else :
-    
+      session_start(['name'=>'EA']);
+        
+      $page=explode("/", $_GET['views']);
+
+      require_once "./controller/loginController.php";
+      $lc = new loginController();
+
+      if(!isset($_SESSION['token_ea']) || !isset($_SESSION['usuario_ea'])){
+        $lc->force_log_out_controller();
+        exit();
+      }
   ?>
   <div class="admin-shell">
     <div class="sidebar-backdrop" data-sidebar-close></div>
