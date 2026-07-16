@@ -32,7 +32,7 @@
 
     <div class="sidebar-user">
         <img class="avatar-img avatar-md sidebar-user-avatar" src="<?php echo APP_URL;?>view/assets/images/avatar/avatar.jpg" alt="Admin Hasan">
-        <strong>Admin Hasan</strong>
+        <strong><?php echo $_SESSION['usuario_ea']; ?></strong>
         <small>Active Workspace</small>
     </div>
 

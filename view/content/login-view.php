@@ -38,6 +38,6 @@
     if(isset($_POST['username_login']) && isset($_POST['password_login'])) {
         require_once './controller/loginController.php';
         $ins_login = new loginController();
-        echo $ins_login->log_in_controller();
+        $ins_login->log_in_controller();
     }
 ?>

@@ -15,7 +15,7 @@
             <div class="dropdown">
                 <button class="profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img class="avatar-img avatar-sm" src="<?php echo APP_URL;?>view/assets/images/avatar/avatar.jpg" alt="Admin Hasan">
-                <span class="profile-name d-none d-sm-inline">Admin Hasan</span>
+                <span class="profile-name d-none d-sm-inline"><?php echo $_SESSION['nombre_ea']; ?></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="#">Profile</a></li>
