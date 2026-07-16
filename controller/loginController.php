@@ -64,7 +64,7 @@
                 $row=$checkLogin->fetch(PDO::FETCH_ASSOC);
                 
                 /*== Generando una nueva session ==*/
-                session_start(['name'=>APP_NAME]);
+                session_start(['name'=>'EA']);
                 $_SESSION['id_ea']=$row['usuario_id'];
                 $_SESSION['nombre_ea']=$row['usuario_nombre']." ".$row['usuario_apellido'];
                 $_SESSION['usuario_ea']=$row['usuario_username'];
@@ -101,7 +101,7 @@
 
         /*== cierre de sesion ==*/
         public function log_out_controller(){
-            session_start(['name'=>APP_NAME]);
+            session_start(['name'=>'EA']);
             $token=mainModel::decryption($_POST['token']);
             $usuario=mainModel::decryption($_POST['usuario']);
 
