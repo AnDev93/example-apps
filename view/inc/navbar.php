@@ -21,7 +21,13 @@
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li><a class="dropdown-item" href="#">Account settings</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="<?php echo APP_URL;?>index">Sign out</a></li>
+                <li>
+                    <form class="FormularioAjax" action="<?php echo APP_URL ?>router/requestLogin.php" method="POST" data-form="load" autocomplete="off">
+                        <input type="hidden" name="id_ea" value="<?php echo $lc->encryption($_SESSION['id_ea']); ?>">
+                        <input type="hidden" name="token" value="<?php echo $lc->encryption($_SESSION['token_ea']); ?>">
+                        <input type="hidden" name="usuario" value="<?php echo $lc->encryption($_SESSION['usuario_ea']); ?>">
+                        <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                </li>
                 </ul>
             </div>
         </div>

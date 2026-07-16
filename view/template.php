@@ -44,6 +44,8 @@
       <?php include_once './view/inc/footer.php'; ?>
     </div>
   </div>
+  <!-- Logout Modal-->
+  <?php include_once("view/inc/logout.php")?>
   <?php endif; ?>
   <?php include_once './view/inc/script.php'; ?>
 </body>
