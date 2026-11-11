@@ -185,10 +185,9 @@
             }/*-- Fin controlador --*/
         } // fin Controlador add_user_controller
 
-        public function list_users_controller(){
-            
+        public function list_users_controller(){ 
+            // Implement the logic for listing users
         }
-
         public function update_user_controller(){
             // Implement the logic for updating a user
         }
