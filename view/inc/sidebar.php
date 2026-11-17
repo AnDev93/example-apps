@@ -1,12 +1,15 @@
 <aside class="admin-sidebar" id="adminSidebar" aria-label="Main navigation">
     <div class="sidebar-header">
-    <a class="brand-mark" href="index.html" aria-label="adminHMD dashboard">
-        <span class="brand-icon"><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i></span>
-        <span class="brand-copy">
-        <span class="brand-title">adminHMD</span>
-        <span class="brand-subtitle">Admin Template</span>
-        </span>
-    </a>
+        <a class="brand-mark" href="index.html" aria-label="adminHMD dashboard">
+            <span class="brand-icon"><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i></span>
+            <span class="brand-copy">
+                <span class="brand-title">adminHMD</span>
+                <span class="brand-subtitle">Admin Template</span>
+            </span>
+        </a>
+        <button class="sidebar-close" type="button" data-sidebar-close aria-label="Cerrar menú lateral">
+            <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
     </div>
 
     <nav class="sidebar-nav">

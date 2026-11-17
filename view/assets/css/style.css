@@ -63,9 +63,30 @@ a {
 }
 
 .sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
   padding: 1.35rem 1.25rem 1.15rem;
   margin-inline: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-close {
+  display: none;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+}
+
+.sidebar-close:hover,
+.sidebar-close:focus {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .brand-mark {
@@ -1034,6 +1055,10 @@ html[data-theme="dark"] .profile-button .avatar-sm {
   .admin-sidebar {
     width: min(var(--sidebar-width), calc(100vw - 48px));
     transform: translateX(-100%);
+  }
+
+  .sidebar-close {
+    display: inline-grid;
   }
 
   .admin-main {

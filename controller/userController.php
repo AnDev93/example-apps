@@ -185,15 +185,125 @@
             }/*-- Fin controlador --*/
         } // fin Controlador add_user_controller
 
-        public function list_users_controller(){ 
-            // Implement the logic for listing users
+        private function user_alert($alert, $title, $text, $type){
+            echo json_encode([
+                "Alerta" => $alert,
+                "Titulo" => $title,
+                "Texto" => $text,
+                "Tipo" => $type
+            ], JSON_UNESCAPED_UNICODE);
+            exit();
         }
+
+        public function list_users_controller(){
+            return $this->list_users_model()->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function get_user_controller($id){
+            return $this->get_user_model($id)->fetch(PDO::FETCH_ASSOC);
+        }
+
         public function update_user_controller(){
-            // Implement the logic for updating a user
+            $id = filter_var($_POST['usuario_id'] ?? '', FILTER_VALIDATE_INT);
+            $nombre = mainModel::clean_string($_POST['Nombres_reg'] ?? '');
+            $apellido = mainModel::clean_string($_POST['Apellidos_reg'] ?? '');
+            $email = mainModel::clean_string($_POST['Email_reg'] ?? '');
+            $telefono = mainModel::clean_string($_POST['Telefono_reg'] ?? '');
+            $rol = filter_var($_POST['Rol_reg'] ?? '', FILTER_VALIDATE_INT);
+            $equipo = filter_var($_POST['Equipo_reg'] ?? '', FILTER_VALIDATE_INT);
+            $username = mainModel::clean_string($_POST['Username_reg'] ?? '');
+
+            if($id === false || $id < 1 || $nombre == "" || $apellido == "" || $email == "" || $telefono == "" || $rol === false || $equipo === false || $username == ""){
+                $this->user_alert("simple", "Datos incompletos", "Completa todos los campos obligatorios.", "error");
+            }
+
+            if(!$this->get_user_model($id)->fetch(PDO::FETCH_ASSOC)){
+                $this->user_alert("simple", "Usuario no encontrado", "El usuario seleccionado no existe.", "error");
+            }
+
+            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,30}", $nombre) || mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,30}", $apellido)){
+                $this->user_alert("simple", "Datos inválidos", "El nombre y el apellido deben tener entre 3 y 30 caracteres.", "error");
+            }
+
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 30){
+                $this->user_alert("simple", "Correo inválido", "Ingresa un correo electrónico válido.", "error");
+            }
+
+            if(mainModel::verificar_datos("[0-9+]{11,15}", $telefono) || mainModel::verificar_datos("[a-zA-Z0-9]{1,30}", $username)){
+                $this->user_alert("simple", "Datos inválidos", "Verifica el formato del teléfono y del nombre de usuario.", "error");
+            }
+
+            if($this->user_exists_model($email, $username, $id)->rowCount() > 0){
+                $this->user_alert("simple", "Usuario duplicado", "El correo o nombre de usuario ya está registrado.", "error");
+            }
+
+            if($this->active_role_model($rol)->rowCount() !== 1 || $this->active_team_model($equipo)->rowCount() !== 1){
+                $this->user_alert("simple", "Rol o equipo inválido", "Selecciona un rol y un equipo activos.", "error");
+            }
+
+            $updated = $this->update_user_model([
+                "ID" => $id,
+                "Nombre" => $nombre,
+                "Apellido" => $apellido,
+                "Email" => $email,
+                "Telefono" => $telefono,
+                "Rol" => $rol,
+                "Equipo" => $equipo,
+                "Username" => $username
+            ]);
+
+            if($updated){
+                $this->user_alert("recargar", "Usuario actualizado", "Los datos del usuario se actualizaron correctamente.", "success");
+            }
+
+            $this->user_alert("simple", "Error", "No se pudo actualizar el usuario.", "error");
+        }
+
+        public function update_user_status_controller(){
+            $id = filter_var($_POST['usuario_id'] ?? '', FILTER_VALIDATE_INT);
+            $status = filter_var($_POST['usuario_estatus'] ?? '', FILTER_VALIDATE_INT);
+
+            if($id === false || $id < 1 || !in_array($status, [0, 1], true)){
+                $this->user_alert("simple", "Datos inválidos", "No se pudo modificar el estatus del usuario.", "error");
+            }
+
+            if($id === 1 || $id === (int)$_SESSION['id_ea']){
+                $this->user_alert("simple", "Operación no permitida", "No puedes modificar el estatus de esta cuenta.", "error");
+            }
+
+            if(!$this->get_user_model($id)->fetch(PDO::FETCH_ASSOC)){
+                $this->user_alert("simple", "Usuario no encontrado", "El usuario seleccionado no existe.", "error");
+            }
+
+            $updated = $this->update_user_status_model($id, $status);
+            if($updated){
+                $this->user_alert("recargar", "Estatus actualizado", "El estatus del usuario se actualizó correctamente.", "success");
+            }
+
+            $this->user_alert("simple", "Error", "No se pudo modificar el estatus del usuario.", "error");
         }
 
         public function delete_user_controller(){
-            // Implement the logic for deleting a user
+            $id = filter_var($_POST['usuario_id'] ?? '', FILTER_VALIDATE_INT);
+
+            if($id === false || $id < 1){
+                $this->user_alert("simple", "Datos inválidos", "No se pudo eliminar el usuario.", "error");
+            }
+
+            if($id === 1 || $id === (int)$_SESSION['id_ea']){
+                $this->user_alert("simple", "Operación no permitida", "No puedes eliminar esta cuenta.", "error");
+            }
+
+            if(!$this->get_user_model($id)->fetch(PDO::FETCH_ASSOC)){
+                $this->user_alert("simple", "Usuario no encontrado", "El usuario seleccionado no existe.", "error");
+            }
+
+            $deleted = $this->delete_user_model($id);
+            if($deleted){
+                $this->user_alert("recargar", "Usuario eliminado", "El usuario se eliminó correctamente.", "success");
+            }
+
+            $this->user_alert("simple", "Error", "No se pudo eliminar el usuario.", "error");
         }
 
         

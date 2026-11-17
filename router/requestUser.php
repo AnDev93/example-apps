@@ -14,18 +14,16 @@ if(!isset($_SESSION['id_ea'], $_SESSION['usuario_ea'], $_SESSION['token_ea'])){
     exit();
 }
 
-if(isset($_POST['guardarUsuario'])){
-    /*--------- Instancia al controlador ---------*/
-    require_once ("../controller/userController.php");
-    $userController = new userController();
+require_once ("../controller/userController.php");
+$userController = new userController();
 
-    /*--------- Agregar un usuario ---------*/
+if(isset($_POST['guardarUsuario'])){
     if(
-        isset($_POST['Nombres_reg']) 
-        && isset($_POST['Apellidos_reg']) 
-        && isset($_POST['Email_reg']) 
-        && isset($_POST['Telefono_reg']) 
-        && isset($_POST['Rol_reg']) 
+        isset($_POST['Nombres_reg'])
+        && isset($_POST['Apellidos_reg'])
+        && isset($_POST['Email_reg'])
+        && isset($_POST['Telefono_reg'])
+        && isset($_POST['Rol_reg'])
         && isset($_POST['Equipo_reg'])
         && isset($_POST['Username_reg'])
         && isset($_POST['Password_reg'])
@@ -41,14 +39,13 @@ if(isset($_POST['guardarUsuario'])){
         ];
         echo json_encode($alert);
     }
-    
-    /*--------- Editar un usuario ---------*/
-    
-    
-    /*--------- Eliminar un usuario ---------*/
-    
-   
-}else {
+}elseif(isset($_POST['editarUsuario'])){
+    $userController->update_user_controller();
+}elseif(isset($_POST['cambiarEstatusUsuario'])){
+    $userController->update_user_status_controller();
+}elseif(isset($_POST['eliminarUsuario'])){
+    $userController->delete_user_controller();
+}else{
     $alert = [
         "Alerta" => "simple",
         "Titulo" => "Ocurrió un error inesperado",

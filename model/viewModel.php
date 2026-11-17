@@ -5,7 +5,9 @@
 			$whiteList=[
 				"dashboard",
                 "user-add",
-                "user-list"
+                "user-list",
+                "user-view",
+                "user-edit"
 			];
 			if(in_array($view, $whiteList)){
 				if(is_file("./view/content/".$view."-view.php")){
