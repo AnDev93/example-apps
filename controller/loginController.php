@@ -65,6 +65,7 @@
                 
                 /*== Generando una nueva session ==*/
                 session_start(['name'=>'EA']);
+                session_regenerate_id(true);
                 $_SESSION['id_ea']=$row['usuario_id'];
                 $_SESSION['nombre_ea']=$row['usuario_nombre']." ".$row['usuario_apellido'];
                 $_SESSION['usuario_ea']=$row['usuario_username'];

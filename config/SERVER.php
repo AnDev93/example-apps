@@ -5,8 +5,6 @@
 	const DB="crud_apps"; // nombre de base datos
 	const USER="root"; // nombre del usuario mysql
 	const PASS=""; //contrase#a del usuario mysql
-
-
 	const SGBD="mysql:host=".SERVER.";dbname=".DB;
 
 

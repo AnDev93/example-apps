@@ -14,7 +14,7 @@ if(isset($_POST['id_ea'])){
     }
     
 }else {
-    session_start(['name'=>APP_NAME]);
+    session_start(['name'=>'EA']);
     session_unset();
     session_destroy();
     header("Location: ".APP_URL."login/");

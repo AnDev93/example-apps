@@ -22,6 +22,7 @@
       require_once "./controller/loginController.php";
       $lc = new loginController();
 
+      // Validar si el usuario está logueado
       if(!isset($_SESSION['token_ea']) || !isset($_SESSION['usuario_ea'])){
         $lc->force_log_out_controller();
         exit();

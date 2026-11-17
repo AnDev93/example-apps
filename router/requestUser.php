@@ -3,6 +3,17 @@ $peticionAjax=true;
 require_once ("../config/APP.php");
 //petición a usuario
 
+session_start(['name'=>'EA']);
+
+if(!isset($_SESSION['id_ea'], $_SESSION['usuario_ea'], $_SESSION['token_ea'])){
+    $alert = [
+        "Alerta" => "redireccionar",
+        "URL" => APP_URL."login/"
+    ];
+    echo json_encode($alert);
+    exit();
+}
+
 if(isset($_POST['guardarUsuario'])){
     /*--------- Instancia al controlador ---------*/
     require_once ("../controller/userController.php");
@@ -21,6 +32,14 @@ if(isset($_POST['guardarUsuario'])){
         && isset($_POST['Password_confirm_reg'])
     ){
         $userController->add_user_controller();
+    }else{
+        $alert = [
+            "Alerta" => "simple",
+            "Titulo" => "Ocurrió un error inesperado",
+            "Texto" => "No se recibieron todos los datos requeridos",
+            "Tipo" => "error"
+        ];
+        echo json_encode($alert);
     }
     
     /*--------- Editar un usuario ---------*/
@@ -30,8 +49,11 @@ if(isset($_POST['guardarUsuario'])){
     
    
 }else {
-    session_start(['name'=>APP_NAME]);
-    session_unset();
-    session_destroy();
-    header("Location: ".APP_URL."login/");
+    $alert = [
+        "Alerta" => "simple",
+        "Titulo" => "Ocurrió un error inesperado",
+        "Texto" => "No se recibió una operación de usuario valida",
+        "Tipo" => "error"
+    ];
+    echo json_encode($alert);
 }

@@ -19,7 +19,7 @@
         </div>
         <div class="d-flex flex-wrap gap-2">
         <input class="form-control form-control-sm table-search" type="search" placeholder="Search users" data-table-search="usersTable" aria-label="Search users">
-        <a class="btn btn-primary btn-sm" href="add-user.html"><i class="bi bi-person-plus" aria-hidden="true"></i> Add User</a>
+        <a class="btn btn-primary btn-sm" href="<?php echo APP_URL;?>user-add"><i class="bi bi-person-plus" aria-hidden="true"></i> Add User</a>
         </div>
     </div>
     <div class="table-responsive">

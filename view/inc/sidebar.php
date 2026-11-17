@@ -18,11 +18,29 @@
             <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
             <span class="nav-text">Users</span>
         </a>
-        <a class="nav-link active" href="<?php echo APP_URL;?>user-add" aria-current="page">
+        <a class="nav-link " href="<?php echo APP_URL;?>user-add" aria-current="page">
             <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
             <span class="nav-text">Add User</span>
         </a>
-        
+
+        <a class="nav-link " href="<?php echo APP_URL;?>user-add" aria-current="page">
+            <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
+            <span class="nav-text">Instructor</span>
+        </a>
+         
+        <a class="nav-link " href="<?php echo APP_URL;?>user-add" aria-current="page">
+            <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
+            <span class="nav-text">Estudiantes</span>
+        </a>
+        <a class="nav-link " href="<?php echo APP_URL;?>user-add" aria-current="page">
+            <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
+            <span class="nav-text">Categorias</span>
+        </a>
+
+        <a class="nav-link " href="<?php echo APP_URL;?>user-add" aria-current="page">
+            <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
+            <span class="nav-text">Cursos</span>
+        </a>
         <a class="nav-link" href="#">
             <span class="nav-icon"><i class="bi bi-gear" aria-hidden="true"></i></span>
             <span class="nav-text">Settings</span>
