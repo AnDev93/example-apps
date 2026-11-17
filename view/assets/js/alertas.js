@@ -64,6 +64,11 @@ formularios_ajax.forEach(formularios => {
 
 function alertas_ajax(alerta, formulario){
 	if(alerta.Alerta==="simple"){
+		if(formulario && formulario.hasAttribute("data-clear-sensitive")){
+			Array.prototype.forEach.call(formulario.querySelectorAll('input[type="password"]'), function(input){
+				input.value="";
+			});
+		}
 		Swal.fire({
 			title: alerta.Titulo,
 			text: alerta.Texto,

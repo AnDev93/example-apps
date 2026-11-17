@@ -18,7 +18,7 @@
                 <span class="profile-name d-none d-sm-inline"><?php echo $_SESSION['nombre_ea']; ?></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="<?php echo APP_URL; ?>profile/">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="#">Account settings</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>

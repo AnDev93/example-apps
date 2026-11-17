@@ -203,6 +203,95 @@
             return $this->get_user_model($id)->fetch(PDO::FETCH_ASSOC);
         }
 
+        public function get_profile_controller(){
+            return $this->get_user_controller((int)$_SESSION['id_ea']);
+        }
+
+        public function update_profile_controller(){
+            $id = (int)$_SESSION['id_ea'];
+            $nombre = mainModel::clean_string($_POST['Nombres_reg'] ?? '');
+            $apellido = mainModel::clean_string($_POST['Apellidos_reg'] ?? '');
+            $email = mainModel::clean_string($_POST['Email_reg'] ?? '');
+            $telefono = mainModel::clean_string($_POST['Telefono_reg'] ?? '');
+            $username = mainModel::clean_string($_POST['Username_reg'] ?? '');
+
+            if($id < 1 || $nombre == "" || $apellido == "" || $email == "" || $telefono == "" || $username == ""){
+                $this->user_alert("simple", "Datos incompletos", "Completa todos los campos obligatorios.", "error");
+            }
+
+            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,30}", $nombre) || mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,30}", $apellido)){
+                $this->user_alert("simple", "Datos inválidos", "El nombre y el apellido deben tener entre 3 y 30 caracteres.", "error");
+            }
+
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 30){
+                $this->user_alert("simple", "Correo inválido", "Ingresa un correo electrónico válido de hasta 30 caracteres.", "error");
+            }
+
+            if(mainModel::verificar_datos("[0-9+]{11,15}", $telefono) || mainModel::verificar_datos("[a-zA-Z0-9]{1,30}", $username)){
+                $this->user_alert("simple", "Datos inválidos", "Verifica el formato del teléfono y del nombre de usuario.", "error");
+            }
+
+            if(!$this->get_user_model($id)->fetch(PDO::FETCH_ASSOC)){
+                $this->user_alert("simple", "Cuenta no encontrada", "No se encontró la cuenta asociada a esta sesión.", "error");
+            }
+
+            if($this->user_exists_model($email, $username, $id)->rowCount() > 0){
+                $this->user_alert("simple", "Datos ya registrados", "El correo o nombre de usuario ya pertenece a otra cuenta.", "error");
+            }
+
+            $updated = $this->update_profile_model([
+                "ID" => $id,
+                "Nombre" => $nombre,
+                "Apellido" => $apellido,
+                "Email" => $email,
+                "Telefono" => $telefono,
+                "Username" => $username
+            ]);
+
+            if($updated){
+                $_SESSION['usuario_ea'] = $username;
+                $_SESSION['nombre_ea'] = $nombre." ".$apellido;
+                $this->user_alert("recargar", "Perfil actualizado", "Tus datos personales se actualizaron correctamente.", "success");
+            }
+
+            $this->user_alert("simple", "Error", "No se pudieron actualizar tus datos personales.", "error");
+        }
+
+        public function update_profile_password_controller(){
+            $id = (int)$_SESSION['id_ea'];
+            $currentPassword = mainModel::clean_string($_POST['CurrentPassword_reg'] ?? '');
+            $newPassword = mainModel::clean_string($_POST['NewPassword_reg'] ?? '');
+            $confirmPassword = mainModel::clean_string($_POST['ConfirmPassword_reg'] ?? '');
+
+            if($id < 1 || $currentPassword == "" || $newPassword == "" || $confirmPassword == ""){
+                $this->user_alert("simple", "Datos incompletos", "Completa todos los campos de contraseña.", "error");
+            }
+
+            if(mainModel::verificar_datos("[a-zA-Z0-9$@.-]{7,30}", $newPassword)){
+                $this->user_alert("simple", "Contraseña inválida", "La nueva contraseña debe tener entre 7 y 30 caracteres: letras, números, $, @, punto o guion.", "error");
+            }
+
+            if($newPassword !== $confirmPassword){
+                $this->user_alert("simple", "Las contraseñas no coinciden", "Confirma correctamente la nueva contraseña.", "error");
+            }
+
+            if($currentPassword === $newPassword){
+                $this->user_alert("simple", "Contraseña sin cambios", "La nueva contraseña debe ser diferente a la actual.", "error");
+            }
+
+            if($this->verify_profile_password_model($id, mainModel::encryption($currentPassword))->rowCount() !== 1){
+                $this->user_alert("simple", "Contraseña actual incorrecta", "Verifica tu contraseña actual e inténtalo nuevamente.", "error");
+            }
+
+            $updated = $this->update_profile_password_model($id, mainModel::encryption($newPassword));
+            if($updated){
+                session_regenerate_id(true);
+                $this->user_alert("recargar", "Contraseña actualizada", "Tu contraseña se cambió correctamente.", "success");
+            }
+
+            $this->user_alert("simple", "Error", "No se pudo actualizar la contraseña.", "error");
+        }
+
         public function update_user_controller(){
             $id = filter_var($_POST['usuario_id'] ?? '', FILTER_VALIDATE_INT);
             $nombre = mainModel::clean_string($_POST['Nombres_reg'] ?? '');

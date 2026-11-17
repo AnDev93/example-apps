@@ -41,6 +41,10 @@ if(isset($_POST['guardarUsuario'])){
     }
 }elseif(isset($_POST['editarUsuario'])){
     $userController->update_user_controller();
+}elseif(isset($_POST['actualizarPerfil'])){
+    $userController->update_profile_controller();
+}elseif(isset($_POST['cambiarContrasenaPerfil'])){
+    $userController->update_profile_password_controller();
 }elseif(isset($_POST['cambiarEstatusUsuario'])){
     $userController->update_user_status_controller();
 }elseif(isset($_POST['eliminarUsuario'])){

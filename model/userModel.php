@@ -34,6 +34,34 @@
             return $sql;
         }
 
+        protected function update_profile_model($data){
+            $sql=mainModel::conectar()->prepare("UPDATE usuario SET usuario_nombre=:Nombre,usuario_apellido=:Apellido,usuario_email=:Email,usuario_telefono=:Telefono,usuario_username=:Username WHERE usuario_id=:ID");
+            $sql->bindParam(":ID",$data['ID'],PDO::PARAM_INT);
+            $sql->bindParam(":Nombre",$data['Nombre']);
+            $sql->bindParam(":Apellido",$data['Apellido']);
+            $sql->bindParam(":Email",$data['Email']);
+            $sql->bindParam(":Telefono",$data['Telefono']);
+            $sql->bindParam(":Username",$data['Username']);
+            $sql->execute();
+            return $sql;
+        }
+
+        protected function verify_profile_password_model($id, $password){
+            $sql=mainModel::conectar()->prepare("SELECT usuario_id FROM usuario WHERE usuario_id=:ID AND usuario_password=:Password");
+            $sql->bindParam(":ID",$id,PDO::PARAM_INT);
+            $sql->bindParam(":Password",$password);
+            $sql->execute();
+            return $sql;
+        }
+
+        protected function update_profile_password_model($id, $password){
+            $sql=mainModel::conectar()->prepare("UPDATE usuario SET usuario_password=:Password WHERE usuario_id=:ID");
+            $sql->bindParam(":Password",$password);
+            $sql->bindParam(":ID",$id,PDO::PARAM_INT);
+            $sql->execute();
+            return $sql;
+        }
+
         //DELETE FROM tabla WHERE usuario_id=:ID
         protected function delete_user_model($id){
             $sql = mainModel::conectar()->prepare("DELETE FROM usuario WHERE usuario_id=:ID");
