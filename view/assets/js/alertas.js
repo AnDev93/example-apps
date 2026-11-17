@@ -21,7 +21,7 @@ function enviar_formulario_ajax(e){
 		fetch(action,config)
 		.then(respuesta => respuesta.json())
 		.then(respuesta => {
-			return alertas_ajax(respuesta);
+			return alertas_ajax(respuesta, this);
 		});
 	}else {
 		let texto_alerta;
@@ -50,7 +50,7 @@ function enviar_formulario_ajax(e){
 				fetch(action,config)
 				.then(respuesta => respuesta.json())
 				.then(respuesta => {
-					return alertas_ajax(respuesta);
+					return alertas_ajax(respuesta, this);
 				});
 			}
 		});
@@ -62,7 +62,7 @@ formularios_ajax.forEach(formularios => {
 	formularios.addEventListener("submit", enviar_formulario_ajax);
 });
 
-function alertas_ajax(alerta){
+function alertas_ajax(alerta, formulario){
 	if(alerta.Alerta==="simple"){
 		Swal.fire({
 			title: alerta.Titulo,
@@ -89,7 +89,7 @@ function alertas_ajax(alerta){
 			confirmButtonText: 'Aceptar'
 		}).then((result) => {
 			if(result.value){
-				document.querySelector(".FormularioAjax").reset();
+				formulario.reset();
 			}
 		});
 	}else if(alerta.Alerta==="redireccionar"){

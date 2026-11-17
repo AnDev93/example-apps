@@ -193,16 +193,20 @@
 		} /*--  Fin Funcion --*/
 
 		/*----------  Funcion generar select ----------*/
-		public function generar_select_db($tabla, $campo_id, $campo_mostrar, $selected = null){
+		public function generar_select_db($tabla, $campo_id, $campo_mostrar, $selected = null, $campo_estatus = null){
 
-			$consulta="SELECT SQL_CALC_FOUND_ROWS * FROM $tabla ORDER BY 1 ASC";
+			$consulta="SELECT * FROM $tabla";
+			if($campo_estatus !== null){
+				$consulta.=" WHERE $campo_estatus=1";
+			}
+			$consulta.=" ORDER BY 1 ASC";
 			$conexion = mainModel::conectar();
 			$datos = $conexion->query($consulta);
 			$datos = $datos->fetchAll();
 			$select='';
 			foreach($datos as $rows){
 				$campo = '';
-				$seleccionado = (($selected == $rows[$campo_id])?"selected":"");
+				$seleccionado = ((string)$selected === (string)$rows[$campo_id])?"selected":"";
 				if(is_array($campo_mostrar)){
 					foreach($campo_mostrar as $data){
 						$campo .= $rows[$data].' ';
@@ -211,7 +215,9 @@
 					$campo = $rows[$campo_mostrar];
 				}
 
-				$select.='<option value="'.$rows[$campo_id].'" '.$seleccionado.'>'.strtoupper($campo).'</option>';
+				$value=htmlspecialchars((string)$rows[$campo_id], ENT_QUOTES, 'UTF-8');
+				$label=htmlspecialchars(trim($campo), ENT_QUOTES, 'UTF-8');
+				$select.='<option value="'.$value.'" '.$seleccionado.'>'.$label.'</option>';
 			}
 			
 			return $select;

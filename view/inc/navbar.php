@@ -27,6 +27,7 @@
                         <input type="hidden" name="token" value="<?php echo $lc->encryption($_SESSION['token_ea']); ?>">
                         <input type="hidden" name="usuario" value="<?php echo $lc->encryption($_SESSION['usuario_ea']); ?>">
                         <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                    </form>
                 </li>
                 </ul>
             </div>

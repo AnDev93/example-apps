@@ -1,3 +1,7 @@
+<?php
+require_once "./model/mainModel.php";
+$userFormModel = new mainModel();
+?>
 <div class="container-fluid px-3 px-lg-4 py-4">
   <div class="page-heading">
     <div class="page-heading-copy">
@@ -42,23 +46,16 @@
           <div class="col-md-6">
             <label class="form-label" for="Rol">Rol</label>
             <select class="form-select" id="Rol" name="Rol_reg" required>
-              <option value="">Choose role</option>
-              <option value="1">Admin</option>
-              <option value="2">Manager</option>
-              <option value="3">Editor</option>
-              <option value="4">Viewer</option>
+              <option value="" selected disabled>Seleccione un rol</option>
+              <?php echo $userFormModel->generar_select_db("rol", "rol_id", "rol_descripcion", null, "rol_estatus"); ?>
             </select>
             <div class="invalid-feedback">Elige un rol.</div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="Equipo">Equipo</label>
             <select class="form-select" id="Equipo" name="Equipo_reg" required>
-              
-              <option value="">Choose team</option>
-              <option value="1">Operations</option>
-              <option value="2">Sales</option>
-              <option value="3">Content</option>
-              <option value="4">Finance</option>
+              <option value="" selected disabled>Seleccione un equipo</option>
+              <?php echo $userFormModel->generar_select_db("equipo", "equipo_id", "equipo_descripcion", null, "equipo_estatus"); ?>
             </select>
             <div class="invalid-feedback">Choose a team.</div>
           </div>
