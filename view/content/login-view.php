@@ -18,7 +18,7 @@
         <div class="mb-3">
             <div class="d-flex justify-content-between">
                 <label class="form-label" for="loginPassword">Password</label>
-                <a class="small fw-semibold" href="forgot-password.html">Forgot?</a>
+                <a class="small fw-semibold" href="<?php echo APP_URL; ?>recovery/">Forgot password?</a>
             </div>
             <input class="form-control" id="loginPassword" type="password" name="password_login" minlength="6">
             <div class="invalid-feedback">Password must be at least 6 characters.</div>

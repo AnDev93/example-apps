@@ -1,3 +1,17 @@
+<?php
+  $peticionAjax=false;
+  require_once "./controller/viewController.php";
+  $ins_view = new viewController();
+  $view = $ins_view->get_view_controller();
+
+  if($view === "recovery" && session_status() !== PHP_SESSION_ACTIVE){
+    session_start(['name'=>'EA']);
+  }
+  if($view === "recovery"){
+    header("Cache-Control: no-store, private");
+    header("Referrer-Policy: no-referrer");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +20,6 @@
 
 <body>
   <?php
-    $peticionAjax=false;
-    require_once "./controller/viewController.php";
-    // instancia al controlador vista
-    $ins_view = new viewController();
-    $view = $ins_view->get_view_controller();
-    
     if ($view == "login" || $view == "recovery" || $view == "404") :
       require_once "./view/content/" . $view . "-view.php";
     else :
