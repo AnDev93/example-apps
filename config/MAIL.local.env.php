@@ -1,8 +1,13 @@
 <?php
 
-// Set APP_SMTP_HOST, APP_SMTP_PORT, APP_SMTP_USERNAME, APP_SMTP_PASSWORD,
-// APP_SMTP_ENCRYPTION (tls or ssl), APP_SMTP_FROM_EMAIL, and APP_SMTP_FROM_NAME
-// in the PHP runtime environment, not in source control.
+
+// Configura APP_SMTP_HOST, APP_SMTP_PORT, APP_SMTP_USERNAME, APP_SMTP_PASSWORD,
+// APP_SMTP_ENCRYPTION (tls o ssl), APP_SMTP_FROM_EMAIL y APP_SMTP_FROM_NAME
+// en el entorno de ejecución de PHP, no en el control de versiones.
+
+// Configuración de correo electrónico para la aplicación.
+// se recomienda utilizar un correo electrónico de la empresa o compañía para enviar correos electrónicos desde la aplicación.
+  
 return [
     "host" => getenv("APP_SMTP_HOST") ?: "",
     "port" => (int)(getenv("APP_SMTP_PORT") ?: "587"),
